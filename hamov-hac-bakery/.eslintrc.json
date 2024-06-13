@@ -1,3 +1,85 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "globals": {
+    "JSX": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jest-dom/recommended",
+    "plugin:jest/recommended",
+    "plugin:jest/style",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "eslint-plugin-import", "prettier"],
+  "rules": {
+    "indent": ["error", 2],
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "ignoreStrings": true,
+        "ignoreComments": true,
+        "ignoreUrls": true
+      }
+    ],
+    "semi": ["error", "never"],
+    "quotes": ["error", "single"],
+    "jsx-quotes": ["error", "prefer-single"],
+    "react/prop-types": 0,
+    "react/display-name": 0,
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": ["components", "lib", "hooks", "hocs", "types", "utils", "stores", "config"],
+        "patterns": ["components/*", "lib/*", "hooks/*", "hocs/*", "types/*", "utils/*", "stores/*", "config/*"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.tsx"],
+      "env": {
+        "jest": true
+      }
+    },
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "react/no-unknown-property": "warn",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-inferrable-types": "warn",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/ban-types": "warn"
+      }
+    }
+  ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  }
 }
